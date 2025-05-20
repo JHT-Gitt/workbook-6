@@ -12,7 +12,8 @@ public class Main {
         person.add(new Person("Elisha", "Aslan", 24));
         person.add(new Person("Ian", "Austin", 20));
         person.add(new Person("Zeby", "Hunger", 22));
-        person.add(new Person("Erza", "Dragnor", 23));
+        person.add(new Person("Erza", "Dragnor", 28));
+        person.add(new Person("Erza", "Dragnor", 25));
 
 //        Collections.sort(person, new Comparator<Person>() {
 //            @Override
@@ -21,8 +22,10 @@ public class Main {
 //                return (last != 0) ? last : o1.getFirstName().compareTo(o2.getFirstName());
 //            }
 //        });
-        
-        person.sort(Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName));
+
+     //   person.sort(Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName)
+       //         .thenComparing(Person::getAge));
+        Collections.sort(person);
 
         for(Person p : person){
             System.out.println(p.getFirstName() +" "+ p.getLastName() +" "+ p.getAge());
