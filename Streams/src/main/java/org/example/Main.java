@@ -23,20 +23,49 @@ public class Main {
         person.add(new Person("Isabella ", "Benjamin ", 30));
         person.add(new Person("Benjamin ", "Price", 26));
 
-        System.out.print("Enter first or last name: ");
-        String name = scanner.nextLine();
+        person.forEach(System.out::println);
 
-        boolean found = false;
-        for (Person p : person) {
-            if (p.getLastName().trim().equalsIgnoreCase(name) || p.getFirstName().trim().equalsIgnoreCase(name)) {
-                System.out.printf("Firstname: %s    Lastname: %s    Age: %d%n",
-                        p.getFirstName(), p.getLastName(), p.getAge());
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("Not Found");
-        }
+        while(true) {
+        System.out.print("Enter first or last name: ");
+        String name = scanner.nextLine().toLowerCase();
+
+//        boolean found = false;
+//        for (Person p : person) {
+//
+//            if (p.getLastName().trim().equalsIgnoreCase(name) || p.getFirstName().trim().equalsIgnoreCase(name)) {
+//                System.out.printf("Firstname: %s    Lastname: %s    Age: %d\n",
+//                        p.getFirstName(), p.getLastName(), p.getAge());
+//                found = true;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("Not Found");
+//        }
+//
+//       Person temp = null;
+//        for(Person pp : person) {
+//            if (temp == null || pp.getAge() > temp.getAge()) {
+//                temp = pp;
+//            }
+//        }
+//            if (temp !=null) {
+//                System.out.println("\nOldest person is:");
+//                System.out.printf("Firstname: %s    Lastname: %s    Age: %d\n", temp.getFirstName(), temp.getLastName(), temp.getAge());
+//
+//        }
+
+    List<Person> filler = person.stream()
+            .filter(f -> f.getFirstName().trim().toLowerCase().contains(name) || f.getLastName().trim().toLowerCase().contains(name) ||
+                   f.getFirstName().equalsIgnoreCase(name) || f.getLastName().trim().equalsIgnoreCase(name))
+            .toList();
+    if (filler.isEmpty()) {
+        System.out.println("Not found");
+        break;
+    } else {
+        filler.forEach(System.out::println);
+
+    }
+}
 
     }
 }
