@@ -2,9 +2,7 @@ package org.example;
 
 import com.pluralsight.streams.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,17 +11,21 @@ public class Main {
         List<Person> person = new ArrayList<>();
 
         person.add(new Person("Emma", "Johnson", 28));
-        person.add(new Person("Liam ", "Carter", 35));
-        person.add(new Person("Olivia ", "Bennett", 30));
-        person.add(new Person("Noah ", "Mitchell", 24));
-        person.add(new Person("Ava ", "Richardson", 25));
-        person.add(new Person("Elijah ", "Hayes", 29));
-        person.add(new Person("Sophia ", "Coleman", 23));
+        person.add(new Person("Liam", "Carter", 35));
+        person.add(new Person("Olivia", "Bennett", 30));
+        person.add(new Person("Noah", "Mitchell", 24));
+        person.add(new Person("Ava", "Richardson", 25));
+        person.add(new Person("Elijah", "Hayes", 29));
+        person.add(new Person("Sophia", "Coleman", 23));
         person.add(new Person("James", "Turner", 27));
-        person.add(new Person("Isabella ", "Benjamin ", 30));
-        person.add(new Person("Benjamin ", "Price", 26));
+        person.add(new Person("Isabella", "Benjamin ", 30));
+        person.add(new Person("Benjamin", "Price", 26));
 
-        person.forEach(System.out::println);
+
+        List<Person> sort = person.stream()
+                .sorted(Comparator.comparing(Person::getAge).reversed())
+                .toList();
+         sort.forEach(System.out::println);
 
         while(true) {
         System.out.print("Enter first or last name: ");
@@ -67,5 +69,14 @@ public class Main {
     }
 }
 
+        List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+        int sum = numbers.stream()
+//                .reduce(0,
+//                        (temp, num)-> temp += num);
+
+                .mapToInt(Integer::intValue)
+                .sum();
+               System.out.println(sum);
+               
     }
 }
