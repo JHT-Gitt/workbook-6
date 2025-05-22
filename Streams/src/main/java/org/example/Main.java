@@ -23,11 +23,11 @@ public class Main {
 
 
         List<Person> sort = person.stream()
-                .sorted(Comparator.comparing(Person::getAge).reversed())
+                .sorted(Comparator.comparing(Person::getFirstName))
                 .toList();
          sort.forEach(System.out::println);
 
-        while(true) {
+        //while(true) {
         System.out.print("Enter first or last name: ");
         String name = scanner.nextLine().toLowerCase();
 
@@ -62,12 +62,12 @@ public class Main {
             .toList();
     if (filler.isEmpty()) {
         System.out.println("Not found");
-        break;
+     //   break;
     } else {
         filler.forEach(System.out::println);
 
     }
-}
+//}
 
         List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
         int sum = numbers.stream()
@@ -77,6 +77,21 @@ public class Main {
                 .mapToInt(Integer::intValue)
                 .sum();
                System.out.println(sum);
-               
+
+
+        Optional<Person> oldest = person.stream()
+                .reduce((a,b) -> a.getAge() > b.getAge() ? a : b);
+
+//                oldest.ifPresent(p -> System.out.printf("Firstname: %-10s Lastname: %-10s Age: %d\n",
+//                p.getFirstName(), p.getLastName(), p.getAge()));
+        System.out.println("\nOldest person is: ");
+        System.out.printf("Firstname: %-10s    Lastname: %-10s    Age: %d\n",oldest.get().getFirstName(),oldest.get().getLastName(),oldest.get().getAge());
+//        Optional<Integer> oldest = person.stream()
+//                .map(Person::getAge)
+//                .reduce(Integer::max);
+//
+//        System.out.println("\nOldest person is: ");
+//        oldest.ifPresent(age -> System.out.println("Oldest age: " + age));
+
     }
 }
